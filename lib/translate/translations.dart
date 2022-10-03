@@ -14,10 +14,22 @@ Map EnglishTranslations = {
     "There should be proper irrigation"
   ],
   "late blight": [
-    "Eliminating cull piles and volunteer potatoes",
+    "Eliminating cull piles and volunteer",
     "Using proper harvesting and storage practices",
     "Applying fungicides when necessary",
   ],
 };
-String healthyTextEnglish = 'Your plant is healthy';
-String healthyTextTwi = 'Wo ahaban no w) ap)wmuden';
+
+// healthy
+String healthyTwiAudio = 'assets/healthy_twi.mp3';
+String healthyGaAudio = 'assets/healthy_ga.mp3';
+
+// early blight
+String earlyBlightTwiAudio = 'assets/early_blight_twi.mp3';
+String earlyBlightGaAudio = 'assets/early_blight_ga.mp3';
+
+// late blight
+String lateBlightTwiAudio = 'assets/late_blight_twi.mp3';
+String lateBlightGaAudio = 'assets/late_blight_ga.mp3';
+
+enum Languages { twi, ga }
