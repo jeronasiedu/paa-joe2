@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:planttech_2/translate/translations.dart';
+import 'package:planttech_2/utils/audio_player.dart';
 
 class Remedy extends StatefulWidget {
   const Remedy({
@@ -14,41 +15,18 @@ class Remedy extends StatefulWidget {
 
 class _RemedyState extends State<Remedy> {
   Map currentTranslation = EnglishTranslations;
-  String buttonText = "Translate to Twi";
-  String healthyText = healthyTextEnglish;
-  void changeTranslation() {
-    setState(() {
-      if (currentTranslation == EnglishTranslations) {
-        currentTranslation = twiTranslations;
-        buttonText = "Translate to English";
-      } else {
-        currentTranslation = EnglishTranslations;
-        buttonText = "Translate to Twi";
-      }
-    });
-  }
 
-  void changeTextToTwi() {
-    setState(() {
-      if (healthyText == healthyTextEnglish) {
-        buttonText = "Translate to English";
-        healthyText = healthyTextTwi;
-      } else {
-        healthyText = healthyTextEnglish;
-        buttonText = "Translate to Twi";
-      }
-    });
-  }
+  MyAudioPlayer player = MyAudioPlayer();
 
   @override
   Widget build(BuildContext context) {
     final h6 = Theme.of(context).textTheme.headline6;
     final btnStyle = ElevatedButton.styleFrom(
       padding: const EdgeInsets.symmetric(
-        vertical: 15,
+        vertical: 10,
         horizontal: 18,
       ),
-      minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 40),
+      minimumSize: Size(MediaQuery.of(context).size.width * 0.4, 25),
     );
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -56,17 +34,35 @@ class _RemedyState extends State<Remedy> {
           ? Column(
               children: [
                 Text(
-                  healthyText,
+                  'Your plant is healthy',
                   style: Theme.of(context).textTheme.headline6,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: ElevatedButton(
-                    onPressed: changeTextToTwi,
-                    style: btnStyle,
-                    child: Text(buttonText),
-                  ),
+                const SizedBox(
+                  height: 20,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        player.play(
+                            type: widget.lowercaseType, lang: Languages.twi);
+                      },
+                      style: btnStyle,
+                      label: const Text("Audio in Twi"),
+                      icon: const Icon(Icons.mic_rounded),
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        player.play(
+                            type: widget.lowercaseType, lang: Languages.ga);
+                      },
+                      style: btnStyle,
+                      label: const Text("Audio in Ga"),
+                      icon: const Icon(Icons.mic_rounded),
+                    ),
+                  ],
+                )
               ],
             )
           : Column(
@@ -106,14 +102,32 @@ class _RemedyState extends State<Remedy> {
                     );
                   },
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: ElevatedButton(
-                    onPressed: changeTranslation,
-                    style: btnStyle,
-                    child: Text(buttonText),
-                  ),
+                const SizedBox(
+                  height: 20,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        player.play(
+                            type: widget.lowercaseType, lang: Languages.twi);
+                      },
+                      style: btnStyle,
+                      label: const Text("Audio in Twi"),
+                      icon: const Icon(Icons.mic_rounded),
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        player.play(
+                            type: widget.lowercaseType, lang: Languages.ga);
+                      },
+                      style: btnStyle,
+                      label: const Text("Audio in Ga"),
+                      icon: const Icon(Icons.mic_rounded),
+                    ),
+                  ],
+                )
               ],
             ),
     );
