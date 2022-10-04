@@ -19,6 +19,12 @@ class _RemedyState extends State<Remedy> {
   MyAudioPlayer player = MyAudioPlayer();
 
   @override
+  void dispose() {
+    player.kill();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final h6 = Theme.of(context).textTheme.headline6;
     final btnStyle = ElevatedButton.styleFrom(

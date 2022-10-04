@@ -32,4 +32,9 @@ class MyAudioPlayer {
       print(e.message);
     }
   }
+
+  // kill the player when the app is closed
+  void kill() {
+    _player.dispose();
+  }
 }

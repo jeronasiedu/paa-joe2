@@ -1,14 +1,8 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 Future<dynamic> analyzePlant(String imagePath) async {
-  final imageBytes = File(imagePath).readAsBytesSync();
-  String imageBase64 = base64Encode(imageBytes);
   final dio = Dio();
-
   FormData formData = FormData.fromMap({
     "file": await MultipartFile.fromFile(imagePath, filename: "image.jpg"),
   });
